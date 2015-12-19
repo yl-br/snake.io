@@ -1,0 +1,46 @@
+<div>
+
+    <md-content>
+        <md-list>
+
+            <h2>Live Scores:</h2>
+
+            <md-list-item layout="row"  ng-repeat="score in liveScores.topScores">
+                <md-divider></md-divider>
+                <h3 flex="20">#{{score.position}}</h3>
+                <div flex="50"> <h4> {{ score.username}} </h4></div>
+                <h2 flex="20" class="md-offset">{{score.score}}</h2>
+            </md-list-item>
+
+
+            <md-list-item ng-if="!liveScores.isTopScoresOverlapRelativeScores"  layout="row">
+                <md-divider></md-divider>
+                <div flex-offset="10">
+                    <h1> <b>...</b> </h1>
+                </div>
+            </md-list-item>
+
+            <md-list-item layout="row" ng-repeat="score in liveScores.relativeScores" ng-class="{'score-green':score.scoreType=='self-score'}">
+
+                <md-divider></md-divider>
+
+                <md-icon flex-offset="0"   ng-if="score.scoreType=='live-score'" md-svg-src="img/person.svg"></md-icon>
+                <md-icon  flex-offset="0" class="md-avatar-icon" ng-if="score.scoreType=='self-score'" md-svg-src="img/self-person.svg"></md-icon>
+                <h3 flex="20"   ng-if="score.scoreType=='final-score'">#{{score.position}}</h3>
+                <div flex="50" > <h4> {{ score.username}} </h4></div>
+                <h2 flex="20">{{score.score}}</h2>
+
+            </md-list-item>
+
+        </md-list>
+    </md-content>
+
+
+</div>
+<style>
+    .score-green{
+        background-color: lightgreen;
+    }
+</style>
+
+

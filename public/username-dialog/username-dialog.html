@@ -1,0 +1,35 @@
+<md-dialog class="username-dialog">
+    <md-content >
+        <div>
+            <h2 style="text-align: center">Enter User Name</h2>
+
+            <form name="usernameForm" >
+                <md-input-container class="md-icon-float md-block">
+                    <!-- Use floating label instead of placeholder -->
+                    <label>Username</label>
+
+                    <md-icon md-svg-src="img/person.svg" class="name"></md-icon>
+                    <input  type="text" name="inputName" ng-model="username"
+                            required minlength="3" md-maxlength="15" autocomplete="off"/>
+                    <div ng-messages="usernameForm.inputName.$error" role="alert">
+                        <div ng-message-exp="['required', 'minlength', 'md-maxlength']">
+                            Username must be between 3 and 15 characters long.
+                        </div>
+                    </div>
+                </md-input-container>
+            </form>
+        </div>
+    </md-content>
+    <div class="md-actions">
+        <md-button ng-click="closeDialog(username)">
+            OK
+        </md-button>
+    </div>
+</md-dialog>
+
+<style>
+    .username-dialog{
+            width:600px;
+        height: 200px;
+    }
+</style>
