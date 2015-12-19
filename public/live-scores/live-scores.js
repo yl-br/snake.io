@@ -34,18 +34,20 @@ LiveScoresController.prototype._updateScores = function(){
     var onlineUsersPromise = this._serverProxy.getOnlineUsers();
 
     var self = this;
-    this._$q.all([topScoresPromise,relativeScoresPromise,onlineUsersPromise]).then(function(resArray){
+    this._$q.all([topScoresPromise,relativeScoresPromise,onlineUsersPromise]).then(function(resArray) {
         var topScores = resArray[0];
         var relativeScores = resArray[1];
-        var onlineUsers= resArray[2];
+        var onlineUsers = resArray[2];
 
         self.topScores = [];
         self.relativeScores = [];
         self.isTopScoresOverlapRelativeScores = false;
 
-        self.isTopScoresOverlapRelativeScores = topScores[topScores.length-1].position >= relativeScores[0].position;
+        if (topScores && topScores.length >= 1 && relativeScores && relativeScores.length>=1){
+            self.isTopScoresOverlapRelativeScores = topScores[topScores.length - 1].position >= relativeScores[0].position;
+        }
         if(self.isTopScoresOverlapRelativeScores) {
-        var instancesToDelete = [];
+            var instancesToDelete = [];
             angular.forEach(topScores, function (topScore) {
                 angular.forEach(relativeScores, function (relativeScore) {
                     var isSameScore = relativeScore.position == topScore.position;
@@ -60,23 +62,23 @@ LiveScoresController.prototype._updateScores = function(){
 
         }
 
-            angular.forEach(topScores,function(topScore){
-                self.topScores.push({
-                    username:topScore.username,
-                    score:topScore.score,
-                    scoreType:'final-score',
-                    position:topScore.position
-                });
+        angular.forEach(topScores,function(topScore){
+            self.topScores.push({
+                username:topScore.username,
+                score:topScore.score,
+                scoreType:'final-score',
+                position:topScore.position
             });
+        });
 
-            angular.forEach(relativeScores,function(relativeScore) {
-                self.relativeScores.push({
-                    username: relativeScore.username,
-                    score: relativeScore.score,
-                    scoreType: 'final-score',
-                    position: relativeScore.position
-                });
+        angular.forEach(relativeScores,function(relativeScore) {
+            self.relativeScores.push({
+                username: relativeScore.username,
+                score: relativeScore.score,
+                scoreType: 'final-score',
+                position: relativeScore.position
             });
+        });
 
         var maxRelativeScore = relativeScores[0].score;
         var minRelativeScore = relativeScores[relativeScores.length-1].score;
@@ -98,11 +100,11 @@ LiveScoresController.prototype._updateScores = function(){
         })
 
         self.relativeScores.sort(function(a,b){
-           if(a.position && b.position){
-               return a.position - b.position;
-           }else{
-               return b.score - a.score;
-           }
+            if(a.position && b.position){
+                return a.position - b.position;
+            }else{
+                return b.score - a.score;
+            }
 
         });
 
