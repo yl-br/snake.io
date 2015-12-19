@@ -62,10 +62,10 @@ Router.prototype.setRoutes = function(app,io){
     });
 
     app.get('/scores',function(req,res){
-       var start = req.query.start || 0;
+        var start = req.query.start || 0;
         var count = req.query.count || self.scoresCountLimit;
         self.scoreStore.getScores(start,count).then(function(scores){
-           res.status(200).json(scores);
+            res.status(200).json(scores);
         });
     });
     app.get('/scores/count',function(req,res) {
@@ -78,11 +78,15 @@ Router.prototype.setRoutes = function(app,io){
         var btmLimit = parseInt(req.query.btmLimit);
         var userToken = req.body.userToken;
         var user = self.userStore.getUser(userToken);
-        var userScore = user.currentScore;
-        self.scoreStore.getRelativeScores(userScore,btmLimit,topLimit).then(function(relativeScores){
-            res.status(200).json(relativeScores);
-        });
+        if(!user){
+            res.sendStatus(404);
+        }else{
+            var userScore = user.currentScore;
+            self.scoreStore.getRelativeScores(userScore,btmLimit,topLimit).then(function(relativeScores){
+                res.status(200).json(relativeScores);
+            });
 
+        }
     });
 
 
