@@ -23,6 +23,7 @@ Router.prototype.setRoutes = function(app,io){
             var userDataToEmit = self.userStore.getUser(newUserDataForClient.userToken);
 
             io.emit('user-state-change',{userId:userDataToEmit.userId,state:'new-user',userData:userDataToEmit});
+            io.emit('user-state-change',{userId:userDataToEmit.userId,state:'score-change',userData:userDataToEmit});
             res.status(201).json(newUserDataForClient);
         }
     });

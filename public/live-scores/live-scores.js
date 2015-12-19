@@ -80,8 +80,8 @@ LiveScoresController.prototype._updateScores = function(){
             });
         });
 
-        var maxRelativeScore = relativeScores[0].score;
-        var minRelativeScore = relativeScores[relativeScores.length-1].score;
+        var maxRelativeScore = relativeScores.length >= 1 ? relativeScores[0].score : Number.MAX_VALUE;
+        var minRelativeScore = relativeScores.length >= 1 ? relativeScores[relativeScores.length-1].score : Number.MIN_VALUE;
 
         angular.forEach(onlineUsers,function(onlineUser){
             var isUserScoreRelevant = onlineUser.currentScore >= minRelativeScore && onlineUser.currentScore <= maxRelativeScore;
