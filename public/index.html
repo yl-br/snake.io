@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title></title>
     <link rel="stylesheet" href="lib/angular-material/angular-material.css"/>
+    <link rel="stylesheet" href="style.css"/>
     <script src="/socket.io/socket.io.js"></script>
 </head>
 <body ng-controller="AppController as app">
@@ -11,13 +12,11 @@
 <username-dialog on-username-selected="app.onUsernameSelected"></username-dialog>
 <score-board score-board-control="app.scoreBoardControl"></score-board>
 
-<div layout="row">
-    <div flex="40" flex-offset="40">
-        <h1>Snake.IO</h1>
-    </div>
+<div layout="row" layout-align="center center">
+        <img src="img/title.png" alt=""/>
 </div>
 
-<div layout="row">
+<div layout="row" >
 
 
     <div flex="20" flex-offset="5" ng-controller="OnlineUsersController as onlineUsers">
@@ -28,24 +27,19 @@
     <div flex="50" ng-controller="GameController as game">
 
         <section layout="row" layout="row">
-            <md-button class="md-raised md-primary" ng-click="game.onGameButtonClick()">
+            <md-button class="md-raised md-primary" ng-click="game.onGameButtonClick()" style="font-size: 20px;">
                 <md-icon ng-if="game.isPlaying"  md-svg-src="img/pause.svg"></md-icon>
                 <md-icon ng-if="!game.isPlaying"  md-svg-src="img/play.svg"></md-icon>
                 {{game.isPlaying?'Pause':'Play'}}
             </md-button>
             <span flex="50"></span>
 
-            <md-button class="md-raised" ng-click="app.showScoreBoard($event);game.stopGame();">
+            <md-button class="md-raised scores-board-btn" ng-click="app.showScoreBoard($event);game.stopGame();">
                 <md-icon md-svg-src="img/list.svg"></md-icon>
-                View Score Board
+                Final Scores Board
             </md-button>
-
         </section>
 
-
-        <!--<md-button class="md-fab md-primary" style="width:100px;height: 100px;">-->
-        <!--<md-icon md-svg-src="img/play.svg" style="width:100px;height: 100px;"></md-icon>-->
-        <!--</md-button>-->
         <br/><br/><br/>
         <game-board game-board-control="game.gameControl" game-settings="game.gameSettings"></game-board>
 
