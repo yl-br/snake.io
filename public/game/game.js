@@ -43,6 +43,7 @@ GameController.prototype._onAppleEaten = function(){
 GameController.prototype._onGameOver = function(){
     console.log('GameOver');
     this.isGameOver = true;
+    this.isPlaying = false;
     var user = this._userData.getUserData();
     this.gameControl.stopGame();
     this._serverProxy.gameOver(user.userToken);
