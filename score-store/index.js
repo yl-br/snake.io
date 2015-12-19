@@ -58,7 +58,8 @@ ScoreStore.prototype.addScore = function(username,score){
     self.addingScorePromise = this.dbService.addScore(username,score).then(function(){
        self.scoresCache.push({
            username:username,
-           score:score
+           score:score,
+           timestamp:new Date()
        });
         self.scoresCache.sort(function(a, b) {
             return b.score- a.score;
@@ -110,6 +111,10 @@ ScoreStore.prototype.getRelativeScores = function(score,btmLimit,topLimit){
 
 ScoreStore.prototype._findRelativeScores = function(score,btmLimit,topLimit){
     var outResult = [];
+
+    if(this.scoresCache.length==0){
+        return outResult;
+    }
 
     var index = this.scoresCache.length;
     var foundPosition = false;

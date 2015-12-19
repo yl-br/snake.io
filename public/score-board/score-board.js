@@ -19,14 +19,13 @@ function ScoreBoardController($mdDialog,serverProxy){
 
 ScoreBoardController.prototype.showScoreBoard = function($event){
     var self = this;
-    var useFullScreen = false;
     this._$mdDialog.show({
         controller: DialogController,
         templateUrl: 'score-board/score-board.html',
         parent: angular.element(document.body),
         targetEvent: $event,
         clickOutsideToClose:true,
-        fullscreen: useFullScreen
+        fullscreen: false
     });
 
     function DialogController($scope, $mdDialog) {
