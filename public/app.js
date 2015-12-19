@@ -6,7 +6,6 @@ angular.module('app',['ngMaterial','ngMessages'])
         cellWidth : 30,
         cellHeight : 30,
         moveIntervalTime:200,
-        singleGameScoreIncrease:10,
         appleImgUrl:'img/apple.png',
         snakeHeadNormalImgUrl:'img/snake-head-normal.png',
         snakeHeadHungryImgUrl:'img/snake-head-hungry.png'

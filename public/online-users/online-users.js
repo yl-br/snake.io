@@ -1,9 +1,9 @@
 /**
  * Created by yuval_000 on 12/19/2015.
  */
-angular.module('app').controller('OnlineUsersController',['userData','serverProxy','gameSettings', OnlineUsersController]);
+angular.module('app').controller('OnlineUsersController',['userData','serverProxy', OnlineUsersController]);
 
-function OnlineUsersController(userData, serverProxy, gameSettings) {
+function OnlineUsersController(userData, serverProxy) {
     this.users= {};
 
     serverProxy.onUserStateChange(this.updateNewUserStatus.bind(this));

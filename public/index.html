@@ -17,15 +17,12 @@
 </div>
 
 <div layout="row" >
-
-
     <div flex="20" flex-offset="5" ng-controller="OnlineUsersController as onlineUsers">
         <div ng-include="'/online-users/online-users.html'"></div>
-
     </div>
 
     <div flex="50" ng-controller="GameController as game">
-
+        <br/><br/>
         <section layout="row" layout="row">
             <md-button class="md-raised md-primary" ng-click="game.onGameButtonClick()" style="font-size: 20px;">
                 <md-icon ng-if="game.isPlaying"  md-svg-src="img/pause.svg"></md-icon>

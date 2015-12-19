@@ -34,8 +34,8 @@ ScoreStore.prototype._initDbService = function(){
         self.dbService = mongodbAdapter;
         deferred.resolve();
     });
-    mongodbConnectPromise.fail(function(){
-                deferred.reject(err);
+    mongodbConnectPromise.fail(function(err){
+        deferred.reject(err);
     });
     return deferred.promise;
 };
@@ -47,11 +47,11 @@ ScoreStore.prototype.addScore = function(username,score){
         deferred.reject();
     }
     self.addingScorePromise = this.dbService.addScore(username,score).then(function(){
-       self.scoresCache.push({
-           username:username,
-           score:score,
-           timestamp:new Date()
-       });
+        self.scoresCache.push({
+            username:username,
+            score:score,
+            timestamp:new Date()
+        });
         self.scoresCache.sort(function(a, b) {
             return b.score- a.score;
         });
@@ -67,7 +67,7 @@ ScoreStore.prototype.getScores = function(start,count){
         this.addingScorePromise.then(function(){
             var outScores = self.scoresCache.slice(start,start+count);
             outScores.forEach(function(scoreObj){
-               scoreObj.position= self.scoresCache.indexOf(scoreObj)+1;
+                scoreObj.position= self.scoresCache.indexOf(scoreObj)+1;
             });
 
             deferred.resolve(outScores);
@@ -129,7 +129,7 @@ ScoreStore.prototype._findRelativeScores = function(score,btmLimit,topLimit){
 
     var self = this;
     outResult.forEach(function(scoreObj){
-       scoreObj.position = self.scoresCache.indexOf(scoreObj)+1;
+        scoreObj.position = self.scoresCache.indexOf(scoreObj)+1;
     });
 
 

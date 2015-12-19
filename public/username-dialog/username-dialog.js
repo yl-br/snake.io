@@ -6,7 +6,7 @@ angular.module('app').component('usernameDialog',
         bindings: {
             onUsernameSelected:'&'
         },
-        controller: ['$mdDialog','$scope','$element','$document','$timeout',UsernameDialogController],
+        controller: ['$mdDialog',UsernameDialogController],
         template: '<div id="dialog-popup-container"></div>' //'username-dialog/username-dialog.html'
     });
 
