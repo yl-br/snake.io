@@ -1,5 +1,5 @@
 angular.module('app',['ngMaterial','ngMessages'])
-    .value('serverEndpointUrl','http://localhost:8080')
+    .value('serverEndpointUrl','http://localhost:5000')
     .value('gameSettings',{
         boardWidth : 800,
         boardHeight : 500,
@@ -13,7 +13,6 @@ angular.module('app',['ngMaterial','ngMessages'])
     }).controller('AppController',['serverProxy','userData',AppController]);
 
 
-var self = null;
 function AppController(serverProxy,userData){
     self = this;
     this._serverProxy = serverProxy;
