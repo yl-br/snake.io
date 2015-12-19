@@ -24,8 +24,7 @@ var io = require('socket.io')(server);
 var UserStore = require('./user-store');
 var userStore = new UserStore(200,10);
 
-console.log(process.env.MONGOLAB_URI);
-var mongodbEndpoint = process.env.MONGOLAB_URI; //"mongodb://localhost:27017"
+var mongodbEndpoint = process.env.MONGOLAB_URI || 'mongodb://localhost:27017';
 
 var ScoreStore = require('./score-store');
 var scoreStore = new ScoreStore(mongodbEndpoint);
