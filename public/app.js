@@ -1,5 +1,5 @@
 angular.module('app',['ngMaterial','ngMessages'])
-    .value('serverEndpointUrl','https://powerful-tor-5127.herokuapp.com/')
+    .value('serverEndpointUrl','https://powerful-tor-5127.herokuapp.com')
     .value('gameSettings',{
         boardWidth : 800,
         boardHeight : 500,
