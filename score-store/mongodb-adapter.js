@@ -28,7 +28,8 @@ MongodbAdapter.prototype.addScore =  function(username,score){
     this.db.collection('scores').insertOne(
         {
             username:username,
-            score:score
+            score:score,
+            timestamp:new Date()
         }, function(err, result) {
             if(err){
                 deferred.reject();

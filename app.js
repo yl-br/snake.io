@@ -18,9 +18,6 @@ var io = require('socket.io')(server);
 
 
 
-
-
-
 var UserStore = require('./user-store');
 var userStore = new UserStore(200,10);
 

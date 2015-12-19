@@ -3,8 +3,6 @@
  */
 var Q = require('q');
 var MongodbAdapter = require('./mongodb-adapter');
-var SqliteAdapter = require('./sqlite-adapter');
-
 
 function ScoreStore(mongodbEndpoint){
     this.scoresCache = [];
@@ -30,7 +28,6 @@ ScoreStore.prototype._initDbService = function(){
     var deferred = Q.defer();
 
     var mongodbAdapter = new MongodbAdapter(this.mongodbEndpoint);
-    var sqliteAdapter = new SqliteAdapter();
     var self = this;
     var mongodbConnectPromise =  mongodbAdapter.connect();
     mongodbConnectPromise.then(function(){
@@ -38,13 +35,7 @@ ScoreStore.prototype._initDbService = function(){
         deferred.resolve();
     });
     mongodbConnectPromise.fail(function(){
-        sqliteAdapter.init().then(
-            function () {
-                self.dbService = sqliteAdapter;
-                deferred.resolve();
-            }, function (err) {
                 deferred.reject(err);
-            })
     });
     return deferred.promise;
 };

@@ -39,6 +39,10 @@ ScoreBoardController.prototype.showScoreBoard = function($event){
             $mdDialog.hide(answer);
         };
 
+        $scope.getHumanDate = function(date){
+          return  moment(new Date(date)).fromNow();
+        }
+
         var DynamicItems = function() {
             this.loadedPages = {};
             this.numItems = 0;

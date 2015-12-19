@@ -1,4 +1,4 @@
-<md-dialog aria-label="Mango (Fruit)"  ng-cloak>
+<md-dialog ng-cloak>
     <form>
         <md-toolbar>
             <div class="md-toolbar-tools">
@@ -18,7 +18,7 @@
                                 <md-divider></md-divider>
                                 <h3 flex="20">#{{score.position}}</h3>
                                 <div flex="40"> <h4> {{ score.username}} </h4></div>
-                                <p flex="20">{{moment(score.timestamp).fromNow()}}</p>
+                                <p flex="20">{{getHumanDate(score.timestamp)}}</p>
                                 <h2 flex="20" class="md-offset">{{score.score}}</h2>
                             </md-list-item>
                     </md-list>
