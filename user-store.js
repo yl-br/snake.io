@@ -1,5 +1,5 @@
 /**
- * Created by yuval_000 on 12/18/2015.
+ * Created on 12/18/2015.
  */
 //var Q = require('q');
 var shortid = require('shortid');
