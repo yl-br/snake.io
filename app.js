@@ -1,5 +1,5 @@
 /**
- * Created by yuval_000 12/17/2015.
+ * Created 12/17/2015.
  */
 var express = require('express');
 var app = express();
