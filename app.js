@@ -1,13 +1,13 @@
 /**
- * Created by yuval_000 on 12/17/2015.
+ * Created by yuval_000 12/17/2015.
  */
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var port = process.env.PORT || 5000;
 
-app.use( bodyParser.json() );       // to support JSON-encoded bodies
-app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+app.use( bodyParser.json() );       // to support JSON-encoded
+app.use(bodyParser.urlencoded({     // to support URL-encoded
     extended: true
 }));
 
